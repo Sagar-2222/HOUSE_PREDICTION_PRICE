@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result | House Price Predictor</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hero-section">
+        <div class="container">
+            <div class="header">
+                <h1>🏡 House Price Predictor</h1>
+                <p class="subtitle">Your prediction results are ready</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container main-content">
+        {% if error %}
+        <div class="result-card error-card">
+            <div class="result-icon">❌</div>
+            <h2>Prediction Failed</h2>
+            <p class="error-message">{{ error }}</p>
+            <a href="/" class="btn-back">← Try Again</a>
+        </div>
+        {% else %}
+        <div class="result-card success-card">
+            <div class="result-icon">✅</div>
+            <h2>Predicted House Price</h2>
+            <div class="price-display">
+                <span class="currency">$</span>
+                <span class="price-value">{{ "{:,.2f}".format(price) }}</span>
+            </div>
+            <p class="result-note">This estimate is based on the property features you provided and historical market data.</p>
+            
+            <div class="action-buttons">
+                <a href="/" class="btn-back">← Make Another Prediction</a>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3>💡 Understanding Your Estimate</h3>
+            <ul>
+                <li><strong>Market Variations:</strong> Actual prices may vary based on current market conditions</li>
+                <li><strong>Additional Factors:</strong> School districts, nearby amenities, and market timing can affect prices</li>
+                <li><strong>Professional Appraisal:</strong> For official valuations, consult a licensed appraiser</li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>© 2025 House Price Predictor | Powered by Machine Learning</p>
+    </footer>
+</body>
+</html>
